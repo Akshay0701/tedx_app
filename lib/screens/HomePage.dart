@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tedx_app/constants.dart';
 import 'package:tedx_app/helper/firebase_helper.dart';
 import 'package:tedx_app/models/Event.dart';
 import 'package:tedx_app/screens/EventInfoPage.dart';
+import 'package:tedx_app/screens/LoginPage.dart';
 import 'package:tedx_app/staticData.dart';
 import 'package:tedx_app/widgets/EventBox.dart';
 import 'package:tedx_app/widgets/PageViewTile.dart';
@@ -19,6 +21,31 @@ class _HomePageState extends State<HomePage> {
   FirebaseHelper _firebaseHelper = new FirebaseHelper();
 
   List<Event> eventlist = [];
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future signOut() async {
+    await showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Logout'),
+        content: Text(
+            'You have been successfully logged out, now you will be redirected to Login page'),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              // Navigator.of(ctx).pop();
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => (LoginPage())),
+                  );
+            },
+            child: Text('OK'),
+          )
+        ],
+      ),
+    );
+    return await _auth.signOut();
+  }
 
   @override
   void initState() {
@@ -37,7 +64,13 @@ class _HomePageState extends State<HomePage> {
         color: kGrey,
         child: CustomScrollView(
           slivers: [
-            SAppBar(title: "Tedx RAIT"),
+            SliverAppBar(
+              title: Text("Tedx RAIT"),
+              actions: [ IconButton(
+      icon: const Icon(Icons.logout_rounded),
+      onPressed: () { signOut(); },
+    ),],
+            ),
             SliverToBoxAdapter(
               child: Container(
                 color: Colors.grey.shade800,
