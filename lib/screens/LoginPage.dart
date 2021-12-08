@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:tedx_app/constants.dart';
 import 'package:tedx_app/helper/auth_methods.dart';
+import 'package:tedx_app/screens/ResetPass.dart';
 import 'package:tedx_app/screens/SignupPage.dart';
 import 'package:tedx_app/screens/TabView.dart';
 
@@ -121,6 +122,17 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 30,),
+                 GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => (ResetPassPage())),
+                  ),
+                  child: Container(child: Text("Forget password?",style: TextStyle(
+                            color: Colors.white70,fontSize: 16),),),
+                  
+                ),
+                
                 Expanded(
                   flex: 1,
                   child: SizedBox(),
