@@ -26,16 +26,16 @@ class FirebaseHelper {
         eventList.clear();
         for(var individualKey in keys){
           event.Event eventData = new event.Event(
-            eventInfo: data[individualKey]["eventInfo"], 
-            formLink: data[individualKey]["formLink"], 
-            bannerLink: data[individualKey]["bannerLink"], 
-            eventName: data[individualKey]["eventName"],
-            isOpen: data[individualKey]["isOpen"],
+            eventInfo: data[individualKey]["eventInfo"] ?? "", 
+            formLink: data[individualKey]["formLink"] ?? "", 
+            bannerLink: data[individualKey]["bannerLink"] ?? "", 
+            eventName: data[individualKey]["eventName"] ?? "",
+            isOpen: data[individualKey]["isOpen"] ?? false,
             speaker: new Speaker(
-              imageUrl: data[individualKey]["speaker"]["imageUrl"],
-              info: data[individualKey]["speaker"]["info"],
-              profession: data[individualKey]["speaker"]["profession"],
-              name: data[individualKey]["speaker"]["name"],
+              imageUrl: data[individualKey]["speaker"]["imageUrl"] ?? "",
+              info: data[individualKey]["speaker"]["info"] ?? "",
+              profession: data[individualKey]["speaker"]["profession"] ?? "",
+              name: data[individualKey]["speaker"]["name"] ?? "",
               )
           );
           // add all closed events in list
@@ -55,16 +55,16 @@ class FirebaseHelper {
         eventList.clear();
         for(var individualKey in keys){
           event.Event eventData = new event.Event(
-            eventInfo: data[individualKey]["eventInfo"], 
-            formLink: data[individualKey]["formLink"], 
-            bannerLink: data[individualKey]["bannerLink"], 
-            eventName: data[individualKey]["eventName"],
-            isOpen: data[individualKey]["isOpen"],
+            eventInfo: data[individualKey]["eventInfo"] ?? "", 
+            formLink: data[individualKey]["formLink"] ?? "", 
+            bannerLink: data[individualKey]["bannerLink"] ?? "", 
+            eventName: data[individualKey]["eventName"] ?? "",
+            isOpen: data[individualKey]["isOpen"] ?? true,
             speaker: new Speaker(
-              imageUrl: data[individualKey]["speaker"]["imageUrl"],
-              info: data[individualKey]["speaker"]["info"],
-              profession: data[individualKey]["speaker"]["profession"],
-              name: data[individualKey]["speaker"]["name"],
+              imageUrl: data[individualKey]["speaker"]["imageUrl"] ?? "",
+              info: data[individualKey]["speaker"]["info"] ?? "",
+              profession: data[individualKey]["speaker"]["profession"] ?? "",
+              name: data[individualKey]["speaker"]["name"] ?? "",
               )
           );
           // add all open events in list

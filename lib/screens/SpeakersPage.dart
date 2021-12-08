@@ -38,7 +38,7 @@ class _SpeakersPageState extends State<SpeakersPage> {
         color: kGrey,
         child: CustomScrollView(
           slivers: [
-            SAppBar(title: 'Tedx RAIT'),
+            SAppBar(title: 'TEDxDYPatilUniversity'),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

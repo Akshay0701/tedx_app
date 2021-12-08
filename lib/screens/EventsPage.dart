@@ -26,6 +26,7 @@ class _EventsPageState extends State<EventsPage> {
     _firebaseHelper.fetchAllEvent().then((list) => {
         setState(() {
           eventlist = list; 
+          print(list);
         })
     });
   }
@@ -38,7 +39,7 @@ class _EventsPageState extends State<EventsPage> {
         color: kGrey,
         child: CustomScrollView(
           slivers: [
-            SAppBar(title: 'Tedx RAIT'),
+            SAppBar(title: 'TEDxDYPatilUniversity'),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

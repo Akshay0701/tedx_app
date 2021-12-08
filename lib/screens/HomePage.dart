@@ -31,13 +31,12 @@ class _HomePageState extends State<HomePage> {
         content: Text(
             'You have been successfully logged out, now you will be redirected to Login page'),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
-              // Navigator.of(ctx).pop();
               Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => (LoginPage())),
-                  );
+                context,
+                MaterialPageRoute(builder: (context) => (LoginPage())),
+              );
             },
             child: Text('OK'),
           )
@@ -65,11 +64,18 @@ class _HomePageState extends State<HomePage> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              title: Text("Tedx RAIT"),
+              title: Text(
+                "TEDxDYPatilUniversity",
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w900),
+              ),
+              floating: true,
+              pinned: false,
+              backgroundColor: kGrey.withOpacity(0.5),
               actions: [ IconButton(
-      icon: const Icon(Icons.logout_rounded),
-      onPressed: () { signOut(); },
-    ),],
+              icon: const Icon(Icons.logout_rounded),
+              onPressed: () { signOut(); },
+            ),],
             ),
             SliverToBoxAdapter(
               child: Container(
@@ -77,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height / 3,
                 child: PageView(
                   controller: PageController(
-                    viewportFraction: 0.8,
+                    viewportFraction: 1,
                     initialPage: 0,
                   ),
                   children: [
