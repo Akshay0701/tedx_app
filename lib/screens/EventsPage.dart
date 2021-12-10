@@ -44,7 +44,7 @@ class _EventsPageState extends State<EventsPage> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "Our Previous Events",
+                  "Our Previous Events 2018-2019",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,

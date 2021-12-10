@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "Upcoming Events",
+                  "Upcoming Events 2022",
                   style: kHeadingStyle,
                 ),
               ),
