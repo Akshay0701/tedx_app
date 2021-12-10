@@ -5,9 +5,10 @@ import 'package:tedx_app/constants.dart';
 import 'package:tedx_app/screens/EventsPage.dart';
 import 'package:tedx_app/screens/HomePage.dart';
 import 'package:tedx_app/screens/SpeakersPage.dart';
+import 'package:tedx_app/screens/SponserPage.dart';
 
 List<Widget> _buildScreens() {
-  return [HomePage(), SpeakersPage(), EventsPage()];
+  return [HomePage(), SpeakersPage(), EventsPage(), SponsorPage()];
 }
 
 List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -29,6 +30,14 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
         CupertinoIcons.calendar_circle,
       ),
       title: ("Events"),
+      activeColorPrimary: kRed,
+      inactiveColorPrimary: CupertinoColors.systemGrey,
+    ),
+    PersistentBottomNavBarItem(
+      icon: Icon(
+        CupertinoIcons.antenna_radiowaves_left_right,
+      ),
+      title: ("Sponsors"),
       activeColorPrimary: kRed,
       inactiveColorPrimary: CupertinoColors.systemGrey,
     )
