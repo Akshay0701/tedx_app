@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tedx_app/constants.dart';
@@ -21,9 +22,14 @@ class _HomePageState extends State<HomePage> {
   FirebaseHelper _firebaseHelper = new FirebaseHelper();
 
   List<Event> eventlist = [];
+  double selectedindex = 0;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future signOut() async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => (LoginPage())),
+    );
     await showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -33,10 +39,7 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => (LoginPage())),
-              );
+              Navigator.pop(ctx);
             },
             child: Text('OK'),
           )
@@ -81,26 +84,42 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 color: Colors.grey.shade800,
                 height: MediaQuery.of(context).size.height / 3,
-                child: PageView(
-                  controller: PageController(
-                    viewportFraction: 1,
-                    initialPage: 0,
+                child: Center(
+                  child: PageView(
+                    controller: PageController(
+                      viewportFraction: 1,
+                      initialPage: 0,
+                    ),
+                    onPageChanged: (int page) {
+                        setState(() {
+                            selectedindex = page + 0.0;
+                        });
+                    },
+                    children: [
+                      PageViewTile(
+                        networkImage: NetworkImage(
+                            'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/Untitledesign.png?raw=true'),
+                      ),
+                      PageViewTile(
+                        networkImage: NetworkImage(
+                            'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/speakerhero.jpg?raw=true'),
+                      ),
+                      PageViewTile(
+                        networkImage: NetworkImage(
+                            'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/Tedhero.jpg?raw=true'),
+                      )
+                    ],
                   ),
-                  children: [
-                    PageViewTile(
-                      networkImage: NetworkImage(
-                          'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/Untitledesign.png?raw=true'),
-                    ),
-                    PageViewTile(
-                      networkImage: NetworkImage(
-                          'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/speakerhero.jpg?raw=true'),
-                    ),
-                    PageViewTile(
-                      networkImage: NetworkImage(
-                          'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/Tedhero.jpg?raw=true'),
-                    )
-                  ],
                 ),
+              ),
+            ),
+             SliverToBoxAdapter(
+              child: new DotsIndicator(
+                dotsCount: 3,
+                decorator: DotsDecorator(
+                  activeColor: Colors.red,
+                ),
+                position: selectedindex
               ),
             ),
             SliverToBoxAdapter(
@@ -137,4 +156,45 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget _indicator(bool isActive) {
+      return Container(
+        height: 10,
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 150),
+          margin: EdgeInsets.symmetric(horizontal: 4.0),
+          height: isActive
+              ? 10:8.0,
+          width: isActive
+              ? 12:8.0,
+          decoration: BoxDecoration(
+            boxShadow: [
+              isActive
+                  ? BoxShadow(
+                color: Color(0XFF2FB7B2).withOpacity(0.72),
+                blurRadius: 4.0,
+                spreadRadius: 1.0,
+                offset: Offset(
+                  0.0,
+                  0.0,
+                ),
+              )
+                  : BoxShadow(
+                color: Colors.transparent,
+              )
+            ],
+            shape: BoxShape.circle,
+            color: isActive ? Color(0XFF6BC4C9) : Color(0XFFEAEAEA),
+          ),
+        ),
+      );
+    }
+
+    List<Widget> _buildPageIndicator() {
+      List<Widget> list = [];
+      for (int i = 0; i < 3; i++) {
+        list.add(i == selectedindex ? _indicator(true) : _indicator(false));
+      }
+      return list;
+    }
 }
