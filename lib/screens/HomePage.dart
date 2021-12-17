@@ -26,27 +26,34 @@ class _HomePageState extends State<HomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future signOut() async {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => (LoginPage())),
-    );
-    await showDialog(
+    // show the dialog
+    showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('Logout'),
-        content: Text(
-            'You have been successfully logged out, now you will be redirected to Login page'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.pop(ctx);
-            },
-            child: Text('OK'),
-          )
-        ],
-      ),
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Would you like to Logout?"),
+          actions: [
+            TextButton(
+              child: Text("Yes", style: TextStyle(color: Colors.grey),),
+              onPressed:  () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (LoginPage())),
+                );
+                return await _auth.signOut();
+              },
+            ),
+            TextButton(
+              child: Text("No", style: TextStyle(color: Colors.red),),
+              onPressed:  () {
+                Navigator.of(context).pop();
+                return;
+              },
+            ),
+          ],
+        );
+      },
     );
-    return await _auth.signOut();
   }
 
   @override
