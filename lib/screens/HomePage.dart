@@ -105,15 +105,19 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       PageViewTile(
                         networkImage: NetworkImage(
-                            'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/Untitledesign.png?raw=true'),
+                            'https://raw.githubusercontent.com/Akshay0701/tedx_app/new-images/lib/assets/1.png'),
                       ),
                       PageViewTile(
                         networkImage: NetworkImage(
-                            'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/speakerhero.jpg?raw=true'),
+                            'https://raw.githubusercontent.com/Akshay0701/tedx_app/new-images/lib/assets/2.png'),
                       ),
                       PageViewTile(
                         networkImage: NetworkImage(
-                            'https://github.com/Swapnilsochill/TEDXDYPatilUniversity/blob/main/Images/Tedhero.jpg?raw=true'),
+                            'https://raw.githubusercontent.com/Akshay0701/tedx_app/new-images/lib/assets/3.png'),
+                      ),
+                      PageViewTile(
+                        networkImage: NetworkImage(
+                            'https://raw.githubusercontent.com/Akshay0701/tedx_app/new-images/lib/assets/4.png'),
                       )
                     ],
                   ),
@@ -122,7 +126,7 @@ class _HomePageState extends State<HomePage> {
             ),
              SliverToBoxAdapter(
               child: new DotsIndicator(
-                dotsCount: 3,
+                dotsCount: 4,
                 decorator: DotsDecorator(
                   activeColor: Colors.red,
                 ),

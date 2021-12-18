@@ -28,12 +28,12 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset('lib/assets/RAIT.png', fit: BoxFit.cover),
+          Image.asset('lib/assets/Cover_page_design.png', fit: BoxFit.fill),
           ClipRRect(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 9, sigmaY: 9),
+              filter: ImageFilter.blur(sigmaX: 0.5, sigmaY: 0.5),
               child: Container(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withOpacity(0.2),
                 alignment: Alignment.center,
               ),
             ),
